@@ -4,9 +4,9 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div>
-        <h1>Fun yay!!!!</h1>
-        <a className="f6 link dim ph3 pv2 mb2 dib white bg-black" href="#0">Button Text</a>
+      <div className="vh-100 bg-green flex justify-center items-center">
+        <button className="f1 outline-transparent dim b--none ph3 pv2 mb2 dib white bg-black br-100 h5 w5">Bored?
+        </button>
       </div>
     );
   }
