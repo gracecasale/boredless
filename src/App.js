@@ -12,10 +12,16 @@ class App extends Component {
       modalOpen: false
     }
     this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
+
   }
   handleModalOpen(){
     this.setState({modalOpen: true});
   }
+  handleModalClose () {
+    this.setState({modalOpen: false});
+  }
+
   render() {
     return (
       <div className="vh-100 bg-green flex justify-center items-center">
@@ -24,7 +30,7 @@ class App extends Component {
         </button>
         <Modal closeTimeoutMS={150} isOpen={this.state.modalOpen}>
          <header className="flex justify-end">
-         <button>X</button>
+         <button onClick={this.handleModalClose}>X</button>
            </header>
          <main>
            <h1>Look a modal!</h1>
