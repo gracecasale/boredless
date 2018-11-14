@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/boredless/static/css/1.bf01e38b.chunk.css"
   },
   {
-    "revision": "ddac291bb00ac1df38bbba5475f6f049",
+    "revision": "ea9a9dd90096c7759579d13345de2263",
     "url": "/boredless/index.html"
   }
 ];

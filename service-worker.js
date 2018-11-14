@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/boredless/precache-manifest.786a5fd19e5947ca979aac5eddf8cfdc.js"
+  "/boredless/precache-manifest.0478b4df8e994dcb78fa5c907b76299e.js"
 );
 
 workbox.clientsClaim();
