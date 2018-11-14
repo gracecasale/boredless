@@ -23,9 +23,15 @@ class App extends Component {
         onClick={this.handleModalOpen}>Bored?
         </button>
         <Modal closeTimeoutMS={150} isOpen={this.state.modalOpen}>
-          <h1>
-            I like cheese
-          </h1>
+         <header className="flex justify-end">
+         <button>X</button>
+           </header>
+         <main>
+           <h1>Look a modal!</h1>
+         </main>
+         <footer>
+           <h2>Nothing to see here.</h2>
+         </footer>
         </Modal>
       </div>
     );
