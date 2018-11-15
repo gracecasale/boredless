@@ -6,8 +6,9 @@ import axios from 'axios';
 const appElement = document.getElementById('root');
 Modal.setAppElement(appElement);
 
+const isDev = process.env.NODE_ENV !== 'production';
 //BORED_API stuffs
-const BORED_API = '/activity';
+const BORED_API = isDev ? '/activity' : 'https://boredapi.com/api/activity';
 
 class App extends Component {
   constructor(props) {
