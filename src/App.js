@@ -14,7 +14,8 @@ class App extends Component {
     super(props);
     this.state = {
       modalOpen: false,
-      activity: ''
+      activity: '',
+      error: null
     }
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
@@ -26,10 +27,15 @@ class App extends Component {
         const { activity } = response.data;
         this.setState({ 
           modalOpen: true,
-          activity: activity
+          activity: activity,
+          error: null
         });
       })
-    .catch(err => {});
+    .catch(err => {
+      this.setState({
+        error: err
+      });
+    })
   }
   handleModalClose() {
     this.setState({ modalOpen: false });
@@ -37,7 +43,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="vh-100 bg-green flex justify-center items-center">
+      <div className="vh-100 bg-green flex flex-column justify-center items-center">
+      {this.state.error && <div className="red bg-black f4 mb4 h3 w5">
+      Error: {this.state.error.message}</div>}
         <button className="f1 outline-transparent dim b--none ph3 pv2 mb2 dib white bg-black br-100 h5 w5"
           onClick={this.handleModalOpen}>Bored?
         </button>
