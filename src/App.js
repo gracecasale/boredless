@@ -16,19 +16,21 @@ class App extends Component {
     this.state = {
       modalOpen: false,
       activity: '',
-      error: null
+      participants: '',
+      error: null,
     }
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
-
   }
   handleModalOpen() {
     axios.get(BORED_API)
       .then(response => {
         const { activity } = response.data;
+        const { participants } = response.data;
         this.setState({ 
           modalOpen: true,
           activity: activity,
+          participants: participants,
           error: null
         });
       })
@@ -59,8 +61,9 @@ class App extends Component {
             <h1>Here is something you can do...</h1>
             <p>{this.state.activity}</p>
           </main>
-          <footer>
-            <h2>Nothing to see here.</h2>
+          <footer className="flex flex-row justify-center items-center">
+            <h2 className="f3">Friends needed to do this activity: </h2>
+            <p className="f3">{this.state.participants}</p>
           </footer>
           </div>
         </Modal>
