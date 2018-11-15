@@ -1,43 +1,59 @@
 import React, { Component } from 'react';
-import './App.css';
 import Modal from "react-modal";
+import './App.css';
+import axios from 'axios';
 
 const appElement = document.getElementById('root');
 Modal.setAppElement(appElement);
+
+//BORED_API stuffs
+const BORED_API = '/activity';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalOpen: false
+      modalOpen: false,
+      activity: ''
     }
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
 
   }
-  handleModalOpen(){
-    this.setState({modalOpen: true});
+  handleModalOpen() {
+    axios.get(BORED_API)
+      .then(response => {
+        const { activity } = response.data;
+        this.setState({ 
+          modalOpen: true,
+          activity: activity
+        });
+      })
+    .catch(err => {});
   }
-  handleModalClose () {
-    this.setState({modalOpen: false});
+  handleModalClose() {
+    this.setState({ modalOpen: false });
   }
 
   render() {
     return (
       <div className="vh-100 bg-green flex justify-center items-center">
-        <button className="f1 outline-transparent dim b--none ph3 pv2 mb2 dib white bg-black br-100 h5 w5" 
-        onClick={this.handleModalOpen}>Bored?
+        <button className="f1 outline-transparent dim b--none ph3 pv2 mb2 dib white bg-black br-100 h5 w5"
+          onClick={this.handleModalOpen}>Bored?
         </button>
-        <Modal closeTimeoutMS={150} isOpen={this.state.modalOpen}>
-         <header className="flex justify-end">
-         <button onClick={this.handleModalClose}>X</button>
-           </header>
-         <main>
-           <h1>Look a modal!</h1>
-         </main>
-         <footer>
-           <h2>Nothing to see here.</h2>
-         </footer>
+        <Modal classcloseTimeoutMS={150} isOpen={this.state.modalOpen}>
+        <div className="flex flex-column h-100">
+          <header className="flex justify-end">
+            <button className="f1 ph3 pv2 mb2 dib white bg-black b--none" onClick={this.handleModalClose}>X</button>
+          </header>
+          <main className="flex-grow-1 flex flex-column justify-center items-center">
+            <h1>Here is something you can do...</h1>
+            <p>{this.state.activity}</p>
+          </main>
+          <footer>
+            <h2>Nothing to see here.</h2>
+          </footer>
+          </div>
         </Modal>
       </div>
     );
